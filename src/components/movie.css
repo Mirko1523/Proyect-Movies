@@ -1,0 +1,133 @@
+/* movie.css */
+
+body {
+  background: linear-gradient(to bottom, rgb(27, 24, 29) 50%, rgba(239, 204, 48, 0.746) 50%);
+}
+
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  width: 500px;
+  height: 430px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #192559; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  color: white; 
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  margin-bottom: 20px; 
+  color: transparent;
+}
+
+.searchBar {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #b5b4b4;
+  border-radius: 4px;
+  background-color: transparent; 
+ color: white;
+ width: 60vh;
+}
+
+
+.searchButton {
+  width: 80px;
+  height: 38px;
+  background-color: #f7a83b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.movieDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: -20vh;
+}
+
+.poster {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 40px; 
+}
+
+.title {
+  font-size: 28px;
+  margin-bottom: 35px;
+  margin-left: 20vh;
+}
+
+.movieDetailsInfo { 
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.rating
+ {
+  margin-bottom: 5px;
+  margin-left: 20vh;
+}
+
+
+.genre {
+  margin-bottom: 3px;
+  margin-left: 20vh;
+}
+
+.genreItem {
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 2px 5px;
+  margin-right: 5px; 
+  margin: 5px;
+}
+
+.genreItem:last-child {
+  margin-right: 0; 
+}
+
+
+.plot {
+  margin-top: -25px;
+  font-style: italic;
+  color : rgb(90, 88, 88);
+}
+.plot p {
+    text-align: left;
+    margin: auto;
+    color: white;
+}
+
+.cast {
+  font-style: italic;
+   color : rgb(90, 88, 88);
+}
+
+.cast p{
+    text-align: left;
+    margin: auto;
+    color: white;
+}
+
+.icon{
+    height: 18px;
+}

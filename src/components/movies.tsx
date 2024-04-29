@@ -1,20 +1,24 @@
-//Apikey: 42b3b16d
-//!PARTES DE LA API
-//Title
-//imbdRating
-//Rated
-//Year
-//Runtime
-//Genre
-//Plot
-//Actors
-//!
+// //Apikey: 42b3b16d
+// //!PARTES DE LA API
+// //Title
+// //imbdRating
+// //Rated
+// //Year
+// //Runtime
+// //Genre
+// //Plot
+// //Actors
+// //!
 
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import "./movie.css";
 import axios from "axios";
 
+
+
+
 interface moviesrating{
-title: string;
+Title: string;
 imdbRating: number;
 Rated: string;
 Year: number;
@@ -75,38 +79,42 @@ const Home: React.FC = () =>{
     }
 
 }
-return(
-    <div>
-        <form onSubmit={callApi}>
+
+  return (
+    <div className="pageContainer">
+      <div className="card">
+        <div className="searchContainer">
+          <form onSubmit={callApi}>
             <input
-            type="text" 
-            value={movie} 
-            onChange={changeMovie} 
-            placeholder="search your favorite movie..." 
-            
-             />
-
-        <button type="submit">Search</button>
-        </form>
-
-        {moviedata && (
-            <div>
-            <h2>{moviedata.title}</h2>
-            <img src={moviedata.Poster} alt="posterdata" className="poster"/>
-            <p>Rating:{moviedata.imdbRating}</p>
-            <p>Rated:{moviedata.Rated}</p>
-            <p>Year:{moviedata.Year}</p>
-            <p>Runtime:{moviedata.Runtime}</p>
-            <p>Genre:{moviedata.Genre}</p>
-            <p>Plot:{moviedata.Plot}</p>
-            <p>Actors:{moviedata.Actors}</p>
-            </div>
-        )}
+              type="text"
+              value={movie}
+              onChange={changeMovie}
+              placeholder="search your favorite movie..."
+              className="searchBar"
+            />
+            <button type="submit" className="searchButton">Search</button>
+          </form>
+        </div>
+{moviedata && (
+  <div>
+    <div className="title white">{moviedata.Title}</div>
+    <div className="rating"><img src="https://cdn-icons-png.freepik.com/256/1828/1828884.png?semt=ais_hybrid" alt="icon" className="icon"/> {moviedata.imdbRating}</div>
+    <div className="genre">
+      {moviedata.Genre.split(', ').map((genre, index) => (
+        <span key={index} className="genreItem">{genre}</span>
+      ))}
     </div>
-    
-) 
+    <div className="movieDetails">
+      <img src={moviedata.Poster} alt="posterdata" className="poster" />
+      <div className="plot white"><p>Plot:</p> {moviedata.Plot}</div>
+      <div className="cast white"><p>Actors:</p> {moviedata.Actors}</div>
+    </div>
+  </div>
+)}
+      </div>
+    </div>
+  );
 };
 
-
-
 export default Home;
+
