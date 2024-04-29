@@ -1,21 +1,6 @@
-// //Apikey: 42b3b16d
-// //!PARTES DE LA API
-// //Title
-// //imbdRating
-// //Rated
-// //Year
-// //Runtime
-// //Genre
-// //Plot
-// //Actors
-// //!
-
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import "./movie.css";
 import axios from "axios";
-
-
-
 
 interface moviesrating{
 Title: string;
