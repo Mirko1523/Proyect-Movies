@@ -12,6 +12,7 @@ Genre: string;
 Plot: string;
 Actors: string;
 Poster: string;
+Error: string;
 }
 //En vez de interface tambien se puede utilizar las clases o class para representar la estructura de datos:
 //Voy a dar un ejemplo sacado de chat gpt:
@@ -43,7 +44,7 @@ Poster: string;
 const Home: React.FC = () =>{
     const [moviedata, setMovieData] = useState<moviesrating | null>(null);
     const [movie, setMovie] = useState<string>('')
-
+   const [error, setError] = useState< string|null >('');
     const changeMovie = (event: ChangeEvent<HTMLInputElement>) =>{
     setMovie(event.target.value)
 }
@@ -52,18 +53,24 @@ const Home: React.FC = () =>{
     try {
     //trim se utiliza para eliminar espacios en blanco
     //Sirve para que los usuarios no puedan poner un espacio al principio del texto y luego buscar.
-   if(movie.trim() !== ''){
-   const response = await axios.get<moviesrating>(
-    `https://www.omdbapi.com/?t=${movie}&apikey=42b3b16d`
-   );
-   console.log("Respuesta de la api", response.data)
-   setMovieData(response.data);
-}
-    } catch (error) {
-        console.error("Error al llamar a la API:", error);
+  if (movie.trim() !== '') {
+      const response = await axios.get<moviesrating>(
+        `https://www.omdbapi.com/?t=${movie}&apikey=42b3b16d`
+      );
+      console.log("Respuesta de la api", response.data);
+      if (response.data.Error) {
+        setError(response.data.Error);
+        setMovieData(null);
+      } else {
+        setMovieData(response.data);
+        setError(null);
+      }
     }
-
-}
+  } catch (error) {
+    setError('Search again');
+    setMovieData(null);
+  }
+};
 
   return (
     <div className="pageContainer">
@@ -80,12 +87,20 @@ const Home: React.FC = () =>{
             <button type="submit" className="searchButton">Search</button>
           </form>
         </div>
+        {error && (
+          <div>
+            <img src='https://cdni.iconscout.com/illustration/premium/thumb/location-finding-error-2748723-2289757.png?f=webp' alt='not found' className='error-image'/>
+            <p>{error}</p>
+            <p>Please search again</p>
+          </div>
+        )}
 {moviedata && (
   <div>
     <div className="title white">{moviedata.Title}</div>
     <div className="rating"><img src="https://cdn-icons-png.freepik.com/256/1828/1828884.png?semt=ais_hybrid" alt="icon" className="icon"/> {moviedata.imdbRating}</div>
     <div className="genre">
-      {moviedata.Genre.split(', ').map((genre, index) => (
+      {/* ACÁ EL SPLIT LO QUE HACE ES QUE SACAR LAS , DEL GENERO DE  LAS PELICULAS */}
+      {moviedata.Genre && moviedata.Genre.split(', ').map((genre, index) => (
         <span key={index} className="genreItem">{genre}</span>
       ))}
     </div>

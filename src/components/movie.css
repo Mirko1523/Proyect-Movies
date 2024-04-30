@@ -131,3 +131,8 @@ body {
 .icon{
     height: 18px;
 }
+
+.error-image {
+  max-width: 50%;
+  max-height: 50%;
+}
